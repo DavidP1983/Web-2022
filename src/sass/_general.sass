@@ -1,0 +1,726 @@
+
+/* Первая Шапка
+
+header
+  position: relative
+  height: 50px
+
+  /* по факту на странице этот тег один, поэтому стили можем применять прямо к нему
+
+nav
+  /* шапка меню с высотой 53px
+  height: 53px
+  background-color: #212121
+  position: fixed
+  width: 100%
+  z-index: 2
+
+  /* в данном случае можно было бы и прописать header nav разницы никакой
+
+
+/* Гамбургер */
+
+/* с 768px и выше данный элемент будет скрыт и наше меню будет полноценно видно, все что меньше будем устнавливать в block */
+.hamburger
+  display: none	
+
+.menu
+  display: flex
+  justify-content: space-between
+
+
+  /* Здесь мы четко подобрали 14px чтоб общая высота header совпала с высотой ul.menu т.е. 53px. Так же данный вопрос решаеться при помощи line-heigh. Top/botton был выбран исходя из разделителя меджу названиями, left/right был выбран от названия (Главная - Оставить заявку)
+  padding: 14px 40px 15px 71px
+
+  /* Так как  bootstrap подтягивает margin и мы его обнулили
+  margin: 0
+  list-style-type: none
+  
+
+.menu_link
+  font-weight: 300
+  font-size: 15px
+  color: $colorwhite
+  &:hover
+     text-decoration: none
+     color: $colorwhite
+
+.menu_item
+  border-right: 2px dashed #ffff
+  padding-right: 28px
+
+  /* Разделители меджу словами
+
+  /* У шестого li убрал лишнюю границу
+
+.menu_item:last-child
+  border-right: none
+
+
+
+/* Вторая Шапка
+
+.subheader
+  /* Первый способ подвинуть background секции promo вверх. Второй способ прямо в секции promo. Но лучший способ это первый
+
+  /* Почему мы задали position: absolute; второй шапки? Для того, чтоб background секции promo поднялся повыше. Раз мы задали position: absolute, значит нашим родителем будет header, которому мы прописали relative
+  position: absolute
+
+  /* После того, как мы придали даной шапке  position: absolute; то у нас вся шапка сплющилась. Чтоб это исправить мы придали ширину шапки 100%, что значить 100% от родителя, а т.е. от header
+  width: 100%
+  height: 84px
+  top: 50px
+  background: rgba(0, 0, 0, 0.6)
+
+  /* position: relative;
+  /* z-index: 2;
+
+.subheader_logo
+ /* Почему именно  max-width: 100%; Так как может в будущем поменяться название логотипа и чтоб он был подстроен под наши размеры мы придали 100% от нашей колонки.
+ max-width: 100%
+
+ /* Так как ссылка это строчный элемент, а для строчных элементов margin не работает, поэтому придали block
+ display: block
+ margin-top: 16px
+
+.subheader_logo_text
+ font-weight: 100
+ font-size: 13px
+ color: $colorwhite
+ opacity: 0.5
+ margin-top: 6px
+
+.subheader_call
+ margin-top: 19px
+ font-weight: 300
+ font-size: 12px
+ color: $colorwhite
+ text-align: right
+
+.subheader_phone
+ display: block
+ margin-top: 8px
+ font-weight: 400
+ font-size: 22px
+ text-transform: uppercase
+ color: $colorwhite
+ text-align: right
+ //* Здесь нам было необходимо чтоб отступить немного от низу
+ line-height: 12px
+ &:hover
+     text-decoration: none
+     color: #fff
+
+
+.subheader_btn
+ margin: 19px 0
+ width: 172px
+ height: 46px
+ /*  linear-gradient по факту считается картинкой */
+ background: linear-gradient(0deg, $colorblue 0%, #4CE2FF 100%)
+ box-shadow: inset 0px 0px 0px rgba(0, 0, 0, 0.12)
+ border-radius: 4px
+ font-weight: 400
+ font-size: 14px
+ text-align: center
+ text-transform: uppercase
+ color: $colorwhite
+ text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.21)
+ border: none
+ @include btn_hover  
+
+.xs-visible
+  display: none   
+
+
+
+
+/* Секция Promo
+
+.promo
+  min-height: 800px
+  background: url('../img/uber_bg.png') center (center / cover) no-repeat
+  padding: 152px 0 186px 0
+
+  /* Второй способ поднять наш background выше при помощи transform. Но таким образом у нас background полностью перекроет вторую шапку. Для этого мы применим для promo минимальный z-index, а для второй шапки максимальный, чтоб она появилась z-index: 2, а так же необходимо для шапки прописать position: relative.
+
+  /* transform: translateY(-84px);
+   z-index: 1;
+
+  .promo_header
+     font-weight: 700
+     font-size: 60px
+     text-align: center
+     text-transform: uppercase
+     color: $colorwhite
+
+  .promo_subheader
+     margin-top: 22px
+     font-weight: 700
+     font-size: 36px
+     text-align: center
+     text-transform: uppercase
+     color: $colorwhite
+
+  .promo_descr
+     margin-top: 23px
+     font-weight: 400
+     font-size: 18px
+     line-height: 24px
+     text-align: center
+     color: $colorwhite
+
+  .promo_btn
+     display: block
+     margin: 0 auto
+     margin-top: 115px
+     width: 259px
+     height: 63px
+     background: linear-gradient(0deg, $colorblue 0%, #4CE2FF 100%)
+     box-shadow: inset 0px 0 0px rgba(0, 0, 0, 0.12)
+     border-radius: 4px
+     border: none
+     font-weight: 400
+     font-size: 18px
+     text-align: center
+     text-transform: uppercase
+     color: $colorwhite
+     text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.21)
+     @include btn_hover
+
+/* Секция Причины
+
+/* данные классы .titles, .sub_titles, lable мы вынесли так как они повторяются по всему проекту */
+
+.titles
+     margin-top: 32px
+     font-weight: 700
+     font-size: 37px     
+     line-height: 48px
+     text-align: center
+     text-transform: uppercase
+     color: #222222
+     &_world
+         color: $colorwhite
+	 
+					
+
+.sub_titles
+ font-weight: 400
+ font-size: 17px
+ line-height: 21px
+ text-align: center
+ color: #222222
+ margin-top: 19px
+ &_world
+     color: $colorwhite
+
+
+
+.label
+  margin: 0 auto
+  padding: 6.5px 0 6.5px 0
+  width: 115px
+  height: 27px
+  background: #000000
+  font-weight: 400
+  font-size: 11px
+  text-align: center
+  text-transform: uppercase
+  color: $colorwhite
+  &_world
+     background-color: $colorwhite
+     color: #070716
+	
+
+
+.reason_to_start
+  min-height: 767px
+  padding: 18px 0 64px 0
+  background: $colorwhite
+
+  
+  .reason_wrapper
+     /* margin-top: 16px;
+     display: flex
+     justify-content: center
+     align-items: center
+
+     .reason_curcle
+         display: flex
+         justify-content: center
+         align-items: center
+         width: 116px
+         height: 116px
+         background: $colorblue
+         border-radius: 100%
+         margin-right: 25px
+
+     .reason_descr
+         /* Применил, чтоб задать всем одну ширину
+         width: 372px
+
+     .title
+         font-weight: 400
+         font-size: 17px
+         line-height: 21px
+         color: $colorblue
+
+     .sub_title
+         font-weight: 300
+         font-size: 16px
+         line-height: 21px
+         color: #202020
+
+
+
+
+
+/* Cекция mobile */
+
+.mobile
+    min-height: 864px
+    padding: 48px 0 80px 0
+    background: url('../img/mobile_bg.png') center (center / cover) no-repeat
+    .row
+        margin-top: 30px
+	
+    &_item 
+        width: 320px
+        height: 280px
+        margin: 0 auto
+        margin-top: 19px
+        padding-top: 91px
+        position: relative
+		
+        &_1
+          background: url('../img/cards/card_1.png') center (center / cover) no-repeat
+        &_2
+          background: url('../img/cards/card_2.png') center (center / cover) no-repeat
+        &_3
+          background: url('../img/cards/card_3.png') center (center / cover) no-repeat
+        &_4
+          background: url('../img/cards/card_4.png') center (center / cover) no-repeat
+        &_5
+          background: url('../img/cards/card_5.png') center (center / cover) no-repeat
+        &_6
+          background: url('../img/cards/card_6.png') center (center / cover) no-repeat
+	
+        &_subtitle
+          font-weight: 400
+          font-size: 24px
+          text-align: center
+          text-transform: uppercase
+          color: $colorwhite	
+          
+        &_plus
+          display: flex
+          justify-content: center
+          aling-items: center
+          /* чтоб уровнять плюсы мы задали позицию absolute отодвинули его снизу и слева на 50% от его родителя (таким образом он не зависит от заголовка).Чтоб полностью иконка в кругу встала по центру воспользовались св-вом transform: translateX и отодвинем на -50%, это значит в лево -50% от width:26px. +50% значит вправо  */
+          position: absolute
+          bottom: 35px
+          transform: translateX(-50%)
+          left: 50%
+          width: 29px
+          height: 29px
+          background: #000000
+          margin: 0 auto
+          border-radius: 100%
+          padding: 6px 0
+          cursor: pointer
+          &::before
+             /* горизонтальная полоска поэтому мы указываем ширину */
+             content: ''
+             position: absolute
+             transform: translateY(-50%)
+             top: 50%
+             display: block
+             width: 17px
+             height: 1px
+             background-color: $colorblue
+             transition: 0.3s all
+             /* вертикальная полоска поэтому мы указываем длину */
+          &::after
+             content: ''
+             position: absolute
+             transform: translateX(-50%)
+             left: 50%
+             display: block
+             height: 17px
+             width: 2px
+             background-color: $colorblue
+             transition: 0.3s all
+          &:hover
+             &::before, &::after
+                 background-color: $colorforplus
+					
+				
+
+
+			 
+
+
+/* Секция выбор */
+
+
+
+.option
+    min-height: 898px
+	
+    &_section_one
+      height: 501px
+      background-color: #070716
+      padding: 56px 0 54px 0 
+
+
+    .label.label_option
+      background: $colorwhite
+      color: #070716
+
+    .titles.titles_option
+      color: $colorwhite
+
+    .sub_titles.sub_titles_option
+      color: $colorwhite
+
+    &_section_two
+      min-height: 397px
+      background: url('../img/choise/car_bg.png') center (center / cover) no-repeat
+      position: relative
+
+      .car_wrapper
+          max-width: 100%
+          position: absolute
+          bottom: -212px
+		
+      .option_descr 
+          font-weight: 300
+          font-size: 17px
+          line-height: 24px
+          text-align: center
+          color: #222222
+          margin-top: 210px
+
+
+			
+/* Второй вариант как сделать */	
+// .choise
+// 	min-height: 898px
+// 	padding: 56px 0 138px 0
+// 	background: url('../img/choise/car_bg.png') center (center / cover) no-repeat
+// 	position: relative
+
+// 	.label.label_white
+// 		background: $colorwhite
+// 		color: #070716
+// 		position: relative
+// 		z-index: 2
+
+// 	.titles.titles_white
+// 		color: $colorwhite
+// 		position: relative
+// 		z-index: 2
+
+// 	.sub_titles.sub_titles_white
+// 		color: $colorwhite
+// 		position: relative
+// 		z-index: 2
+
+// 	&_img
+// 		display: block
+// 		margin: 54px auto 0 auto
+// 		position: relative
+// 		z-index: 2
+
+// 	&_descr
+// 		text-align: center
+// 		color: #222222
+// 		font-size: 17px
+// 		font-weight: 300
+// 		line-height: 24px
+
+// 	.black
+// 		background-color:  #070716
+// 		position: absolute
+// 		top: 0
+// 		left: 0
+// 		width: 100%
+// 		height: 499px
+// 		z-index: 1
+
+
+			  
+/* Секция Требования */
+
+
+.require 
+    /* Высоту можем не указывать у нас списки в будущем могут расширяться, могут видоизмеяться достаточно указать только padding. Весь контекнт, который будет находиться внутри он будет генерировать высоту блока  */
+
+    /* Поскольку мы задали внутренний padding то при добавление еще margin require_block  у нас нижняя часть немного добавило отступа, чтоб убрать отступ снизу мы добавим margin-bottom: 0 */
+    padding: 66px 0 87px 0
+	
+    &_block
+        margin: 33px 0
+        &_mbt
+          margin-bottom: 0
+    &_title
+      font-weight: 400
+      font-size: 22px
+      color: #1CA8C3
+    &_list
+      list-style-type: none
+      /* Поскольку мы убрали стили у ul, то у нас добавились отступы слева, поэтому мы зададим свои отступы */
+      padding-left: 50px
+      margin-top: 22px
+      li
+        // display: inline-block
+        font-weight: 300
+        font-size: 17px
+        line-height: 24px
+        color: #222222
+        margin-bottom: 10px
+        position: relative
+        &::before
+              content: ''
+              /* прописали  inline-block чтоб иконки стали в одну строку с текстом и варавниваем иконки по вертикали. Так же прописываем inline-block самому элементу li*/
+
+              // display: inline-block
+              /* Равняем по оси X и оси Y */
+              // transform: translate(-5px, -1px)
+              /* выравниваем икоки так же по вертикали */
+              // vertical-align: middle
+
+              /* второй вариант лучше с  position: absolute так как при первом варианте у нас иконки вылезали на наш заданный padding 50px у ul*/
+              position: absolute
+              /* отодвигаем от теста на 32px т.е. 11px в лево от теста + 21px сама ширина иконки = 32px */
+              left: -32px
+
+              /* вариант по выравниванию по цетнру с top и trnasform по вертикали */
+              // top: 50%
+              // transform: translateY(-50%)
+
+              top: 3px
+              width: 21px
+              height: 20px
+              background: url('../icons/conditions/check_mark_blue.svg') center (center / cover) no-repeat
+    &_descr
+      margin-top: 25px
+      font-weight: 300
+      font-size: 17px
+      color: #1CA8C3
+
+    .warning
+        .require_title
+          color:  #FF5656
+          margin-top: 60px
+        .require_list
+            li
+                &::before
+                   background: url('../icons/conditions/check_mark_red.svg') center (center / cover) no-repeat
+
+
+
+/* Cекция По всему миру */
+	
+.world
+    height: 720px
+    padding: 48px 0 22px
+    background: url('../img/world_bg.png') center (center / cover) no-repeat
+
+    &_checkup
+        margin-top: 457px
+        position: relative
+
+        &_item
+          display: block
+          margin: 0 auto
+          font-weight: 400
+          font-size: 15px
+          text-align: center
+          text-transform: uppercase
+          color: #1FBAD6
+          cursor: pointer
+          &::before
+             content: ''
+             position: absolute
+             width: 0px
+             height: 2px
+             background-color: #1FBAD6
+             transform: translateY(10px)
+             top: 50%
+             transition: 0.5s all
+          &:hover
+                 text-decoration: none
+                 color: #1FBAD6
+                 &::before
+                     width: 195px
+
+
+
+/* Секция Footer */
+
+
+// .info
+// 	min-height: 134px
+// 	padding: 11px 0 37px 0
+// 	&_icons
+// 		display: flex
+// 		justify-content: space-between
+// 		align-items: center
+// 		padding: 0 21px 0 23px
+		
+
+
+// 		&_media
+// 			list-style-type: none
+// 			display: flex
+// 			justify-content: center
+// 			align-items: center
+// 			padding-left: 0
+// 			margin-bottom: 0
+			
+// 			li
+// 				display: flex
+// 				justify-content: center
+// 				align-items: center
+// 				width: 35px
+// 				height: 35px
+// 				padding: 6px 0
+// 				margin-right: 6px
+// 				background-color: #222222
+// 				border-radius: 100%
+// 				line-height: 12px
+// 			.facebook:hover
+// 						background-color: blue
+// 			.twitter:hover
+// 						background-color: $colorblue
+// 			.instagram:hover
+// 						background-color: #833AB4
+// 			.linkedin:hover
+// 						background-color: #0072b1
+
+// 		&_app
+// 			list-style-type: none
+// 			padding: 0
+// 			margin: 0	
+// 	&_line
+// 		width: 301px
+// 		height: 7px
+// 		margin: 0 auto
+// 		background-color:  #1FBAD6
+// 		margin-top: 11px
+	
+// 	&_footer_menu
+// 		display: flex
+// 		justify-content: space-between
+// 		margin-top: 29px
+// 		list-style-type: none
+// 		padding: 0
+// 		margin-bottom: 0
+// 		&.menu2
+// 			margin-top: 14px
+			
+
+// 		li
+// 			font-weight: 300
+// 			font-size: 15px
+// 			align-items: center
+// 			text-transform: uppercase
+// 			a
+// 				color: #070716
+// 		li.info_footer_item2
+// 				font-size: 11px
+// 				a
+// 				  color:  #999999
+// 	&_rus
+// 		font-weight: 400
+// 		font-size: 11px
+// 		text-align: center
+// 		text-transform: uppercase
+// 		margin-top: 19px
+// 		color: #1FBAD6
+// 		a
+// 			color: #1FBAD6	
+
+
+footer 
+    padding: 14px 23px 39px 23px
+    a 
+        &:hover 
+           text-decoration: none
+.footer
+    &_divider
+       width: 299px
+       height: 4px
+       background-color: #1fbad6
+       margin: 0 auto
+
+    &_wrapper
+       display: flex 
+       justify-content: space-between
+       align-items: flex-start
+       padding-top: 32px
+    &_wrapper > div 
+        width: 33%
+        &:nth-child(3)
+            display: flex 
+            justify-content: flex-end
+
+    &_social
+        width: 160px
+        display: flex
+        justify-content: space-between
+        &_item 
+            display: flex 
+            justify-content: center
+            align-items: center
+            margin: 0 4px 
+            width: 32px
+            height: 32px
+            background-color: #070716
+            border-radius: 100%
+            i 
+             color: #fff
+        .facebook:hover
+            background-color: blue
+        .twitter:hover
+            background-color: $colorblue
+        .linkedin:hover
+            background-color: #0072b1
+        .instagram:hover
+            background-color: #833AB4
+
+
+    &_links
+        width: 390px
+        margin: 0 auto
+        &_main
+            display: flex 
+            justify-content: space-between
+            padding: 0 10px	
+            a 
+               color: #070716
+               font-size: 15px
+               font-weight: 300
+               text-transform: uppercase
+        &_sub 
+            display: flex 
+            justify-content: space-between
+            margin-top: 10px
+            a 
+               color: #999999
+               font-size: 11px
+               font-weight: 300
+               text-transform: uppercase
+        &_lang 
+               display: block 
+               margin: 0 auto
+               color: #1fbad6
+               font-size: 11px
+               font-weight: 400
+               margin-top: 19px
+               text-transform: uppercase
+               text-align: center
+
+
